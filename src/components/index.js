@@ -1,77 +1,65 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Header from "./Header";
-import Particles from "react-tsparticles";
+import Particles from "react-particles-js";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles({
+  particlesCanva: {
+    position: "absolute",
+    opacity: "0.3",
+  },
+});
 
 const Home = () => {
+  const classes = useStyles();
+
   return (
-    <div>
+    <>
       <Navbar />
       <Header />
       <Particles
-        options={{
-          modes: {
-            bubble: {
-              distance: 400,
-              duration: 2,
-              opacity: 0.8,
-              size: 40,
-            },
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
+        canvasClassName={classes.particlesCanva}
+        params={{
           particles: {
-            color: {
-              value: "#ffffff",
-              opacity: {
-                value: 0.5,
-              },
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 0.5,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 3,
-              straight: false,
-            },
             number: {
+              value: 45,
               density: {
                 enable: true,
-                value_area: 1000,
+                value_area: 900,
               },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
             },
             shape: {
               type: "circle",
+              stroke: {
+                width: 1,
+                color: "tomato",
+              },
             },
             size: {
+              value: 8,
               random: true,
-              value: 2,
+              anim: {
+                enable: true,
+                speed: 6,
+                size_min: 0.1,
+                sync: true,
+              },
+            },
+            opacity: {
+              value: 1,
+              random: true,
+              anim: {
+                enable: true,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: true,
+              },
             },
           },
-          detectRetina: true,
         }}
       />
-    </div>
+    </>
   );
 };
 

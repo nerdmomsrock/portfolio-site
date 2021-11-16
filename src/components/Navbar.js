@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import MobileRightMenuSlider from "@material-ui/core/Drawer";
 import {
@@ -9,7 +10,6 @@ import {
   ListItemText,
   ListItemIcon,
   Avatar,
-  Boxider,
   List,
   Typography,
   Box,
@@ -24,6 +24,7 @@ import {
 } from "@material-ui/icons";
 
 import avatar from "../images/avatar.png";
+import Footer from "./Footer";
 
 // CSS STYLES
 
@@ -48,18 +49,22 @@ const menuItems = [
   {
     listIcon: <Home />,
     listText: "Home",
+    listPath: "/",
   },
   {
     listIcon: <AssignmentInd />,
     listText: "Resume",
+    listPath: "/resume",
   },
   {
     listIcon: <Apps />,
     listText: "Portfolio",
+    listPath: "/portfolio",
   },
   {
     listIcon: <ContactMail />,
     listText: "Contact",
+    listPath: "/contact",
   },
 ];
 
@@ -83,7 +88,7 @@ const Navbar = () => {
       <Divider />
       <List>
         {menuItems.map((lsItem, key) => (
-          <ListItem button key={key}>
+          <ListItem button key={key} component={Link} to={lsItem.listPath}>
             <ListItemIcon className={classes.listItem}>
               {lsItem.listIcon}
             </ListItemIcon>
@@ -101,11 +106,13 @@ const Navbar = () => {
       <Box component="nav">
         <AppBar position="static" style={{ background: "black" }}>
           <Toolbar>
-            <IconButton onClick={toggleSlider("right", true)}>
+            <IconButton edge="start" onClick={toggleSlider("right", true)}>
               <ArrowBack style={{ color: "#67C5CB" }} />
             </IconButton>
             <Typography variant="h5" style={{ color: "#FFFFFF" }}>
-              Portfolio
+              <Link to="/" style={{ color: "tomato", textDecoration: "none" }}>
+                Portfolio
+              </Link>
             </Typography>
             <MobileRightMenuSlider
               anchor="right"
@@ -113,6 +120,7 @@ const Navbar = () => {
               onClose={toggleSlider("right", false)}
             >
               {sideList("right")}
+              <Footer />
             </MobileRightMenuSlider>
           </Toolbar>
         </AppBar>
